@@ -1,5 +1,6 @@
 body {
-    background: #fafafa;
+    background: url(ninja_background.gif) no-repeat;
+    background-size: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -12,8 +13,65 @@ body {
 }
 
 .content-field {
+	background: white;
 	min-width: 500px;
 	border: 1px solid black;
 	min-height: 400px;
+}
+
+
+.submit-btn {
+   display: -moz-inline-stack;
+   display: inline-block;
+   width: 135px;
+   height: 39px;
+   background: url("http://dabuttonfactory.com/b.png?t=Submit%20%3E%3E&f=Candela&ts=25&tc=ffffff00&it=png&c=12&bgt=pyramid&bgc=2a4cd4&ebgc=421791&bs=1&bc=421791&hp=20&vp=10") no-repeat;
+   line-height: 39px;
+   vertical-align: text-middle;
+   text-align: center;
+   color: #ffffff;
+   font-family: Candela;
+   font-size: 25px;
+   font-weight: normal;
+   font-style: normal;
+   text-shadow: none;
+}
+
+
+.message-field {
+	width: 50%;
+	min-height: 50px;
+}
+
+h1 {
+	color: white;
+	font-family: Futura;
+
+}
+
+h2{
+	color: black;
+	font-family: Times;
+	text-shadow: 1px 1px 1px blue;
+}
+
+::-webkit-input-placeholder {
+   color: red;
+   text-transform: uppercase;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;
+   text-transform: uppercase;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red; 
+   text-transform: uppercase; 
+}
+
+:-ms-input-placeholder {  
+   color: red;  
+   text-transform: uppercase;
 }
 
