@@ -1,0 +1,1 @@
+We're called NinjaChatr! Our application is call NinjaChatr too!
