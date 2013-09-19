@@ -45,6 +45,6 @@ function saveMessage (message) {
  
 function addToContentField (message) {
 	var li = $('<li>'+message.get('message')+'</li>');
-	$('.message-list').append(li);
+	$('.messageList').append(li);
 }
 

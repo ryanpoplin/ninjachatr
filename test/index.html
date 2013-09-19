@@ -10,15 +10,7 @@
 </head>
 <body>
     <div id="mocha"></div>
-
-    <div class="content-field">
-        <ul class="message-list">
-
-        </ul>
-    </div>
-    <input type="text" class="message-field">
-    <button class="submit-btn">Save</button>
-
+    
     <script src="lib/mocha/mocha.js"></script>
     <script>mocha.setup('bdd')</script>
     <!-- assertion framework -->
@@ -31,5 +23,24 @@
     <!-- include spec files here... -->
     <script src="spec/test.js"></script>
     <script>mocha.run()</script>
+
+    <header>
+            <div class="container">
+                <h1>NinjaChatr</h1>
+            </div>
+
+        </header>
+        <div class="container">
+            <div class="content-field">
+                <h2>Messages</h2>
+                <ul class="messageList"></ul>
+            </div>
+            <input class ="message-field" placeholder="Message">
+
+            <div class="submit-btn">Submit</div>
+
+
+
+        </div>
 </body>
 </html>
