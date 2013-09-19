@@ -7,13 +7,13 @@ var ChatCollection = Parse.Collection.extend({
 });
 
 var chat = new ChatCollection();
-
+var message
 $(function(){
 
 	// function();
 
 	$('.submit-btn').click(function(){
-		var message = $('.message-field').val();
+		message = $('.message-field').val();
 		// function();
 	});
 
