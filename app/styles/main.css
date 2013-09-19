@@ -112,6 +112,8 @@ h2{
 
 .messageList{
 	color: white;
+	font-family: Times;
+	font-size: 18px;
 }
 
 .text-bubble {
