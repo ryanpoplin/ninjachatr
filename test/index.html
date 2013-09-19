@@ -5,10 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Mocha Spec Runner</title>
     <link rel="stylesheet" href="lib/mocha/mocha.css">
+    <link rel="stylesheet" href="../app/styles/main.css">
     <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
 </head>
 <body>
     <div id="mocha"></div>
+
+    <div class="content-field">
+        <ul class="message-list">
+
+        </ul>
+    </div>
+    <input type="text" class="message-field">
+    <button class="submit-btn">Save</button>
+
     <script src="lib/mocha/mocha.js"></script>
     <script>mocha.setup('bdd')</script>
     <!-- assertion framework -->
