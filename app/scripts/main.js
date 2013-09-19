@@ -6,19 +6,49 @@ var ChatCollection = Parse.Collection.extend({
 	model: ChatClass
 });
 
-var chat = new ChatCollection();
+var chatCollection = new ChatCollection();
 
 $(function(){
 
-	// function();
-
 	$('.submit-btn').click(function(){
-		var message = $('.message-field').val();
-		// function();
+		var chatmsg = new ChatClass;
+		var messaging = $('.message-field').val();
+		saveChat(chatmsg, messaging);
+		addToChatCollection(chatmsg);
 	});
 
 });
 
-function addMessage () {
-	// collection add...
+function saveChat (message, messaging) {
+	if (validation(messaging)) {
+		message.set("text", messaging);
+		message.save(null, {
+			success: function() {	
+				addToChat(message);
+			},
+			error: function() {
+				console.log(error.description);
+			}
+		});
+	}
+};
+
+function addToChat(message) {
+	li = $('<li class="messageList">'+message.get('text')+'</li>');
+	$('.content-field').append(li);
 }
+
+function validation(messaging) {
+	if(messaging == '') {
+		$('.message-field').css('background', 'red');
+	} else {
+		messaging; 
+		return true;
+	};
+}
+
+//message is carried over from saveChat as defined in .submit-btn function
+function addToChatCollection(message) {
+	chatCollection.add(message);
+}
+
