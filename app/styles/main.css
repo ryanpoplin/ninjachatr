@@ -1,5 +1,108 @@
 body {
-    background: #fafafa;
+    background: url(ninja_background.gif) no-repeat;
+    background-size: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
+
+.container {
+	margin: 0 auto;
+ 	width: 940px;
+ 	text-align: center;
+}
+
+.content-field {
+	background: rgba(255, 255, 255, 0.55);
+	min-width: 500px;
+	min-height: 400px;
+	border-radius: 20px;
+	box-shadow: inset 4px 4px 10px black;
+}
+
+
+.submit-btn {
+   display: -moz-inline-stack;
+   display: inline-block;
+   width: 135px;
+   height: 39px;
+   background: url("http://dabuttonfactory.com/b.png?t=Submit%20%3E%3E&f=Candela&ts=25&tc=ffffff00&it=png&c=12&bgt=pyramid&bgc=2a4cd4&ebgc=421791&bs=1&bc=421791&hp=20&vp=10") no-repeat;
+   line-height: 39px;
+   vertical-align: text-middle;
+   text-align: center;
+   color: #ffffff;
+   font-family: Candela;
+   font-size: 25px;
+   font-weight: normal;
+   font-style: normal;
+   text-shadow: none;
+}
+
+
+.message-field {
+	width: 50%;
+	min-height: 50px;
+	background: rgba(255, 255, 255, 0.55);
+	border-radius: 20px;
+	box-shadow: inset 2px 2px 10px black;
+	font-size: 18px;
+	color: blue;
+	padding-left: 10px;
+}
+
+h1 {
+	color: rgba(180, 176, 176, 0.58);
+	font-family: Futura;
+	text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+
+}
+
+h2{
+	color: rgb(90, 87, 87);
+	font-family: Times;
+	font-size: 39px;
+	text-shadow: 1px 1px 1px rgb(8, 8, 9);
+}
+
+.messageList {
+	text-align: left;
+	font-family: Times;
+	font-size: 15px;
+}
+
+::-webkit-input-placeholder {
+   color: blue;
+   text-transform: uppercase;
+   padding-left: 20px;
+ 	min-height: 20px;
+   font-size: 20px;
+
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: blue;
+   text-transform: uppercase;
+   padding-left: 20px;
+ 	min-height: 20px;
+   font-size: 20px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: blue;
+   text-transform: uppercase;
+   padding-left: 20px;
+ 	min-height: 20px;
+   font-size: 20px;
+}
+
+:-ms-input-placeholder {  
+     color: blue;
+   text-transform: uppercase;
+   padding-left: 20px;
+ 	min-height: 20px;
+   font-size: 20px;
+}
+
+.error {
+	background: red;
+}
+
