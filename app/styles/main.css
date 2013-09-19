@@ -3,3 +3,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
+
+.error {
+    background-color: #a0a0a0;
+}
