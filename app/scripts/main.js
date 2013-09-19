@@ -20,6 +20,11 @@ $(function(){
 	$('.submit-btn').click(function(){
 		messageValidate($('.message-field').val());
 	});
+
+
+	
+
+
 });
 
 function messageValidate (message) {
@@ -45,6 +50,18 @@ function saveMessage (message) {
  
 function addToContentField (message) {
 	var li = $('<li>'+message.get('message')+'</li>');
+	li.addClass('text-bubble')
 	$('.messageList').append(li);
 }
 
+ // setInterval(function(){
+ //      console.log("Time")
+ //  		$('.messageList').html('')
+ //  		chatCollection.fetch({
+	// 		success: function(collection) {
+	// 			collection.each(function(message){
+	// 			addToContentField(message);
+	// 			});
+	// 		}
+	// 	});
+ //    },5000);
