@@ -70,24 +70,32 @@ h2{
    color: blue;
    text-transform: uppercase;
    padding-left: 20px;
-   
+ 	min-height: 20px;
+   font-size: 20px;
+
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: blue;
+    color: blue;
    text-transform: uppercase;
-   padding-left: 20px; 
+   padding-left: 20px;
+ 	min-height: 20px;
+   font-size: 20px;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-     color: blue;
+   color: blue;
    text-transform: uppercase;
    padding-left: 20px;
+ 	min-height: 20px;
+   font-size: 20px;
 }
 
 :-ms-input-placeholder {  
      color: blue;
    text-transform: uppercase;
    padding-left: 20px;
+ 	min-height: 20px;
+   font-size: 20px;
 }
 
