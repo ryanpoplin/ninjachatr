@@ -17,13 +17,10 @@ $(function(){
 			});
 		}
 	});
+
 	$('.submit-btn').click(function(){
 		messageValidate($('.message-field').val());
 	});
-
-
-	
-
 
 });
 
