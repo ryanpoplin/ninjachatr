@@ -52,14 +52,15 @@ function addToContentField (message) {
 	$('.messageList').append(li);
 }
 
- // setInterval(function(){
- //      console.log("Time")
- //  		$('.messageList').html('')
- //  		chatCollection.fetch({
-	// 		success: function(collection) {
-	// 			collection.each(function(message){
-	// 			addToContentField(message);
-	// 			});
-	// 		}
-	// 	});
- //    },3000);
+ setInterval(function(){
+      console.log("Time")
+  		
+  		chatCollection.fetch({
+			success: function(collection) {
+				$('.messageList').html('')
+				collection.each(function(message){
+				addToContentField(message);
+				});
+			}
+		});
+    },3000);
