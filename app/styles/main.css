@@ -119,7 +119,7 @@ h2{
 .text-bubble {
 	min-height: 20px;
 	min-width: 50px;
-	max-width: 200px;
+	max-width: 900px;
 	background: rgba(56, 132, 202, 0.64);
 	border-radius: 20px;
 	margin-bottom: 8px;
@@ -129,5 +129,6 @@ h2{
 
 ul {
 	list-style-image: URL(ninja.png);
+	max-width: 400px;
 
 }
