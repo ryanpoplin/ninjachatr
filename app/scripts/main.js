@@ -35,6 +35,7 @@ function messageValidate (message) {
 function saveMessage (message) {
 	var chatMessage = new ChatClass();
 	chatMessage.set('message', message);
+	chatMessage.set('time', moment().format("MMM, Do h:mm A"))
 	chatMessage.save(null, {
 		success: function(){
 			addToContentField(chatMessage);
@@ -46,16 +47,18 @@ function saveMessage (message) {
 }
  
 function addToContentField (message) {
-	var li = $('<li>'+message.get('message')+'</li>');
+	var timeStamp = message.get('time')
+	var li = $('<li> <h3>' +message.get('message')+'</h3> '+ timeStamp +'</li>');
 	li.addClass('text-bubble')
 	$('.messageList').append(li);
 }
 
  setInterval(function(){
       console.log("Time")
-  		$('.messageList').html('')
+  		
   		chatCollection.fetch({
 			success: function(collection) {
+				$('.messageList').html('')
 				collection.each(function(message){
 				addToContentField(message);
 				});
