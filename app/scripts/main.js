@@ -47,7 +47,8 @@ function saveMessage (message) {
 }
  
 function addToContentField (message) {
-	var li = $('<li>'+message.get('message')+' '+ message.get('time')+'</li>');
+	var timeStamp = message.get('time')
+	var li = $('<li> <h3>' +message.get('message')+'</h3> '+ timeStamp +'</li>');
 	li.addClass('text-bubble')
 	$('.messageList').append(li);
 }

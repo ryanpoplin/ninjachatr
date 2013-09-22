@@ -113,7 +113,18 @@ h2{
 .messageList{
 	color: white;
 	font-family: Times;
+	font-size: 12px;
+	text-align: right;
+}
+
+h3 {
 	font-size: 18px;
+	font-family: Times;
+	color: white;
+	padding: 0px;
+	margin-bottom: 0px;
+	margin-top: 2px;
+	text-align: left;
 }
 
 .text-bubble {
@@ -132,3 +143,4 @@ ul {
 	max-width: 400px;
 
 }
+
