@@ -1,1 +1,3 @@
-We're called NinjaChatr! Our application is call NinjaChatr too!
+Team NinjaChatr: Brandon, Ryan, Keeron...
+
+http://ryanpoplin.github.io/ninjachatr/

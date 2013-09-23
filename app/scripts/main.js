@@ -6,22 +6,9 @@ var ChatCollectionClass = Parse.Collection.extend({
 	model: ChatClass
 });
 
-var ChatCollectionClassPrivate = Parse.Collection.extend({
-	model: ChatClass
-});
-
-var chatCollectionPrivate = new ChatCollectionClassPrivate();
 var chatCollection = new ChatCollectionClass();
  
 $(function(){
-
-	chatCollectionPrivate.fetch({
-		success: function(collection) {
-				collection.each(function(message){
-				addToContentField(message);
-			});
-		}
-	});
 
 	chatCollection.fetch({
 		success: function(collection) {
@@ -30,11 +17,13 @@ $(function(){
 			});
 		}
 	});
+
 	$('.submit-btn').click(function(){
 		var message = $('.message-field');
 		var name = $('.name-field');
 		messageValidate(message, name);
 	});
+
 });
 
 function messageValidate (message, name) {
@@ -71,9 +60,13 @@ function prepMessage (message, name) {
 	}
 }
 
+
 // save the message
 function saveMessage(message) {
 	message.set('message', $('.message-field').val());
+	// message.set('message', message);
+	message.set('time', moment().format("MMM, Do h:mm A"))
+	// message.set('time', moment().startOf('hour').fromNow());
 	message.set('name', $('.name-field').val());
 
 	message.save(null, {
@@ -90,7 +83,8 @@ function saveMessage(message) {
 // To get values from chatmessage instance use the "message.get"
  
 function addToContentField (message) {
-	var li = $('<li><b>' + message.get('name')+' says: </b>' + message.get('message')+'</li>');
+	var timeStamp = message.get('time')
+	var li = $('<li><h3><b>' + message.get('name')+' says: </b>' +message.get('message')+'</h3> '+ timeStamp +'</li>');
 	$('.messageList').append(li);
 	$('.message-field').val('');
 	var profilePhoto = message.get("photo");
@@ -100,13 +94,16 @@ function addToContentField (message) {
 	}
 }
 
-setInterval(function() {
-	$('.messageList').html('');
-	chatCollection.fetch({
-		success: function(collection) {
+ setInterval(function(){
+      console.log("Time")
+  		
+  		chatCollection.fetch({
+			success: function(collection) {
+				$('.messageList').html('')
 				collection.each(function(message){
 				addToContentField(message);
-			});
-		}
-	});
-}, 3000000);
+				});
+			}
+		});
+    },3000);
+
