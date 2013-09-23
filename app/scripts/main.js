@@ -19,38 +19,79 @@ $(function(){
 	});
 
 	$('.submit-btn').click(function(){
-		messageValidate($('.message-field').val());
+		var message = $('.message-field');
+		var name = $('.name-field');
+		messageValidate(message, name);
 	});
 
 });
 
-function messageValidate (message) {
-	if(message === "") {
-		$('.message-field').addClass('error').attr('placeholder', 'Be a ninja, and type something in!');
-	} else {
-		saveMessage(message);
+function messageValidate (message, name) {
+	if(message.val() === "") {
+		message.addClass('error').attr('placeholder', 'Ninja Name');
+	} 
+	if(name.val() === "") {
+		name.addClass('error').attr('placeholder', 'Be a ninja, and type something in!');
+	} 
+	else {
+		prepMessage(message, name);
 	}
 }
 
-function saveMessage (message) {
-	var chatMessage = new ChatClass();
-	chatMessage.set('message', message);
-	chatMessage.set('time', moment().format("MMM, Do h:mm A"))
-	chatMessage.save(null, {
+
+function prepMessage (message, name) {
+	var chatMessage = new ChatClass();	
+	var fileUploadControl = $("#profilePhotoFileUpload")[0];
+	// if there's a file, upload it first,
+	// and THEN save the message
+	if (fileUploadControl.files.length > 0) {
+  		var file = fileUploadControl.files[0];
+  		var namer = "photo.jpg";
+  		console.log("Yay")
+ 
+	  	var parseFile = new Parse.File(namer, file);
+	  	parseFile.save().then(function(){
+			chatMessage.set("photo", parseFile);
+	  		saveMessage(chatMessage)
+	  	})
+	// if there's no file, just save it straight away 
+	} else {
+		saveMessage(chatMessage)
+	}
+}
+
+
+// save the message
+function saveMessage(message) {
+	message.set('message', $('.message-field').val());
+	// message.set('message', message);
+	message.set('time', moment().format("MMM, Do h:mm A"))
+	// message.set('time', moment().startOf('hour').fromNow());
+	message.set('name', $('.name-field').val());
+
+	message.save(null, {
 		success: function(){
-			addToContentField(chatMessage);
+			addToContentField(message);
 		},
 		error: function(error){
 			alert("A Parse error has occured..., " + error.description);
 		}
 	});
 }
+
+// Message in addToContentField is now using "chatMessage instance" as argument
+// To get values from chatmessage instance use the "message.get"
  
 function addToContentField (message) {
 	var timeStamp = message.get('time')
-	var li = $('<li> <h3>' +message.get('message')+'</h3> '+ timeStamp +'</li>');
-	li.addClass('text-bubble')
+	var li = $('<li><h3><b>' + message.get('name')+' says: </b>' +message.get('message')+'</h3> '+ timeStamp +'</li>');
 	$('.messageList').append(li);
+	$('.message-field').val('');
+	var profilePhoto = message.get("photo");
+	if (message.get('photo')) {
+		console.log('PHOTO IS',message.get("photo").url());
+		$('.messageList').append('<img src="'+message.get("photo").url()+'" />');
+	}
 }
 
  setInterval(function(){
@@ -65,3 +106,4 @@ function addToContentField (message) {
 			}
 		});
     },3000);
+
