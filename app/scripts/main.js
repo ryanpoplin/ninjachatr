@@ -6,54 +6,51 @@ var ChatCollectionClass = Parse.Collection.extend({
 	model: ChatClass
 });
 
+var ChatCollectionClassPrivate = Parse.Collection.extend({
+	model: ChatClass
+});
+
+var chatCollectionPrivate = new ChatCollectionClassPrivate();
 var chatCollection = new ChatCollectionClass();
  
 $(function(){
 
-	
-	chatCollection.fetch({
+	chatCollectionPrivate.fetch({
 		success: function(collection) {
 				collection.each(function(message){
 				addToContentField(message);
-				
 			});
 		}
 	});
 
-	$('.login-btn').click(function() {
-		var name = $('.name-field');
-		if(name.val() === "") {
-			name.addClass('error').attr('placeholder', 'Ninja Name');
-		} 
-		logIn(name);
-		// getNames(message);
+	chatCollection.fetch({
+		success: function(collection) {
+				collection.each(function(message){
+				addToContentField(message);
+			});
+		}
 	});
-
 	$('.submit-btn').click(function(){
 		var message = $('.message-field');
-		messageValidate(message);
+		var name = $('.name-field');
+		messageValidate(message, name);
 	});
-
 });
 
-// create modal with username login
-// check 1: check to see if user entered matches collection of users in parse
-// check 2: display usernames on left of chat
-// check 3: show current users logged in with red highlight
-
-
-function messageValidate (message) {
-	
+function messageValidate (message, name) {
 	if(message.val() === "") {
-		message.addClass('error').attr('placeholder', 'Be a ninja, and type something in!');
+		message.addClass('error').attr('placeholder', 'Ninja Name');
+	} 
+	if(name.val() === "") {
+		name.addClass('error').attr('placeholder', 'Be a ninja, and type something in!');
 	} 
 	else {
-		prepMessage(message);
+		prepMessage(message, name);
 	}
 }
 
 
-function prepMessage (message) {
+function prepMessage (message, name) {
 	var chatMessage = new ChatClass();	
 	var fileUploadControl = $("#profilePhotoFileUpload")[0];
 	// if there's a file, upload it first,
@@ -61,6 +58,7 @@ function prepMessage (message) {
 	if (fileUploadControl.files.length > 0) {
   		var file = fileUploadControl.files[0];
   		var namer = "photo.jpg";
+  		console.log("Yay")
  
 	  	var parseFile = new Parse.File(namer, file);
 	  	parseFile.save().then(function(){
@@ -73,27 +71,11 @@ function prepMessage (message) {
 	}
 }
 
-function logIn(message) {
-	var chatLogin = new ChatClass();	
-	message.set('name', $('.name-field').val());
-	message.set('loggedin', true);
-
-	message.save(null, {
-		success: function() {
-			var li = $('<li>' + message.get('name') + '</li>');
-			$('.nameList').append(li);
-		},
-		error: function() {
-			alert(error.description);
-		}
-	});
-}
-
 // save the message
 function saveMessage(message) {
 	message.set('message', $('.message-field').val());
+	message.set('name', $('.name-field').val());
 
-	
 	message.save(null, {
 		success: function(){
 			addToContentField(message);
@@ -110,7 +92,6 @@ function saveMessage(message) {
 function addToContentField (message) {
 	var li = $('<li><b>' + message.get('name')+' says: </b>' + message.get('message')+'</li>');
 	$('.messageList').append(li);
-	// only clears out the message field, not name field
 	$('.message-field').val('');
 	var profilePhoto = message.get("photo");
 	if (message.get('photo')) {
@@ -119,29 +100,8 @@ function addToContentField (message) {
 	}
 }
 
-function getNames (message) {
-	var all = $('<li class="usernames">'+message.get('name')+ '</li>');
-	// var name = $('nameList');
-	$('.nameList').append(all); 
-	console.log($('.nameList li')[2]);
-
-	// $('.nameList').forEach(function (name) {
-	// 	// if (message.get('name') == name) { 
-	// 		console.log(name);
-	// 	});
-		// else { $('.nameList').append(all); }
-}
-
-
-function getNames2 (message) {
-	var all = $('<li class="usernames">'+message.get('name')+ '</li>');
-	$('.nameList').append(all); 
-	console.log($('.nameList li')[2]);
-}
-
 setInterval(function() {
 	$('.messageList').html('');
-
 	chatCollection.fetch({
 		success: function(collection) {
 				collection.each(function(message){
@@ -150,4 +110,3 @@ setInterval(function() {
 		}
 	});
 }, 3000000);
-
